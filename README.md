@@ -6,6 +6,7 @@ If you need more information, please follow these links:
 * [Blynk docs](http://docs.blynk.cc)
 * [Blynk community](https://community.blynk.cc)
 * [Blynk Examples generator](https://examples.blynk.cc)
+* [Simple Web Client Example](docs/simple-web-client/index.html)
 * [Facebook](http://www.fb.com/blynkapp)
 * [Twitter](http://twitter.com/blynk_app)
 * [App Store](https://itunes.apple.com/us/app/blynk-control-arduino-raspberry/id808760481?ls=1&mt=8)

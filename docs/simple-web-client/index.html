@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blynk Simple Web Client</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input { display: block; margin-bottom: 10px; padding: 5px; width: 300px; }
+    button { padding: 5px 10px; }
+    pre { background: #f0f0f0; padding: 10px; }
+  </style>
+</head>
+<body>
+<h2>Blynk Simple Web Client</h2>
+<p>Enter your server information and auth token to load project data.</p>
+<label>Server Host</label>
+<input type="text" id="host" placeholder="127.0.0.1">
+<label>Port</label>
+<input type="text" id="port" placeholder="8080" value="8080">
+<label>Username</label>
+<input type="text" id="username" placeholder="optional">
+<label>Password</label>
+<input type="password" id="password" placeholder="optional">
+<label>Auth Token</label>
+<input type="text" id="token" placeholder="your auth token">
+<button id="loadBtn">Load Project</button>
+<pre id="output"></pre>
+<script>
+async function loadProject() {
+  const host = document.getElementById('host').value.trim();
+  const port = document.getElementById('port').value.trim() || '8080';
+  const token = document.getElementById('token').value.trim();
+  const output = document.getElementById('output');
+  if (!host || !token) {
+    alert('Please enter host and auth token');
+    return;
+  }
+  const url = `http://${host}:${port}/${token}/project`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('Request failed: ' + res.status);
+    const json = await res.json();
+    output.textContent = JSON.stringify(json, null, 2);
+  } catch (err) {
+    output.textContent = err.toString();
+  }
+}
+
+document.getElementById('loadBtn').addEventListener('click', loadProject);
+</script>
+</body>
+</html>
